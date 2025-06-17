@@ -1,6 +1,6 @@
 import logging
 import pandas as pd
-from clean import clean_int, clean_string, clean_float, clean_decimal, parse_iso_datetime, is_valid_url
+from transform_and_load.clean_data import clean_int, clean_string, clean_float, clean_decimal, parse_iso_datetime, is_valid_url
 
 DEFAULT_DATE = '1970-01-01 00:00:00'
 

@@ -10,7 +10,7 @@ from datetime import datetime
 from auth import get_access_token
 from scraper import search_items_by_category
 from config import THREADS
-from db import setup_mysql, get_random_category_ids, pool
+from extract.db_utils import setup_mysql, get_random_category_ids, pool
 from logger import ETLLogger
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')

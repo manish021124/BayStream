@@ -128,9 +128,7 @@ with seller_stats as (
 	left join dim_condition cond on fl.condition_id = cond.condition_id
 	left join dim_date d on fl.created_date_id = d.date_id
     where
-		c.category_name = ''
-		and cond.condition_name = ''
-		and d.year = '' 
+		c.category_name = 'Acupuncture'
     group by s.seller_id
 ),
 segmented_sellers as (

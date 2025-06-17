@@ -8,9 +8,9 @@ from datetime import datetime
 from schema_setup import setup_etl_tables
 from transform_and_load.db_connection import get_connection
 from etl_tracker import get_last_etl_timestamp, update_etl_timestamp
-from transform import clean_row
-from load import load_dimensions_and_facts, bulk_insert_clean_data
-from transform_and_load.load_from_db import load_raw_data, load_clean_data
+from transform_and_load.transform_data import clean_row
+from transform_and_load.load_data import load_dimensions_and_facts, bulk_insert_clean_data
+from transform_and_load.load_from_db import load_raw_data
 from logger import ETLLogger
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')  
@@ -63,16 +63,8 @@ def main():
       raise
 
     try:
-      logger.start("load clean data from db")
-      clean_db_df = load_clean_data(cursor, last_ts)
-      logger.success(records_processed=len(clean_db_df))
-    except Exception:
-      logger.fail(traceback.format_exc())
-      raise
-
-    try:
       logger.start("insert data to dimension and fact tables")
-      inserted = load_dimensions_and_facts(cursor, clean_db_df)
+      inserted = load_dimensions_and_facts(cursor, clean_df)
       conn.commit()
       logger.success(records_processed=inserted)
     except Exception:

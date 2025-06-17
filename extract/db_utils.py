@@ -23,7 +23,7 @@ def setup_mysql():
       price DECIMAL(10,2),
       item_condition VARCHAR(100),
       condition_id VARCHAR(20),
-      seller_username VARCHAR(100),
+      seller_username TEXT,
       feedback_score INT,
       feedback_percentage FLOAT,
       shipping_cost DECIMAL(10,2),

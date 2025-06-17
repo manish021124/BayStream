@@ -2,7 +2,7 @@ import time
 import random
 import logging
 from config import MAX_RETRIES, BACKOFF_FACTOR, MAX_ITEMS_PER_TERM
-from db import get_last_offset, update_last_offset, insert_items
+from extract.db_utils import get_last_offset, update_last_offset, insert_items
 
 def search_items_by_category(session, category_id, pull_ts):
   logging.info(f"Started category '{category_id}'")
